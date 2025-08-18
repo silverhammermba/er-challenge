@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfh16n72apleo"]
+[gd_scene load_steps=4 format=3 uid="uid://bfh16n72apleo"]
 
 [ext_resource type="PackedScene" uid="uid://bgdgth5d10ob2" path="res://quadrant.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bxonyhnfxay2b" path="res://game.gd" id="1_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://8rujtyskfdu2" path="res://bars.tscn" id="3_feb5d"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -14,7 +15,7 @@ script = ExtResource("1_e2o6t")
 
 [node name="CardArea" type="Control" parent="."]
 layout_mode = 1
-anchor_right = 0.8
+anchor_right = 0.75
 anchor_bottom = 1.0
 
 [node name="CardContainer" type="Control" parent="CardArea"]
@@ -41,6 +42,7 @@ text = "Tap Here To Draw"
 
 [node name="Card" type="Control" parent="CardArea/CardContainer"]
 layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -134,6 +136,44 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="BarArea" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.725
+anchor_right = 0.95
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bars" type="Control" parent="BarArea"]
+layout_mode = 1
+anchor_top = 0.05
+anchor_right = 0.8
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Awareness" parent="BarArea/Bars" instance=ExtResource("3_feb5d")]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.25
+
+[node name="Spirit" parent="BarArea/Bars" instance=ExtResource("3_feb5d")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.25
+anchor_bottom = 0.5
+
+[node name="Fitness" parent="BarArea/Bars" instance=ExtResource("3_feb5d")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.75
+
+[node name="Focus" parent="BarArea/Bars" instance=ExtResource("3_feb5d")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.75
 
 [connection signal="pressed" from="CardArea/CardContainer/Draw" to="." method="_on_draw_pressed"]
 [connection signal="pressed" from="Reshuffle" to="." method="_on_reshuffle_pressed"]

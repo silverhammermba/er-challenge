@@ -24,7 +24,7 @@ func update_sub_dist(crest: int, mountain: int, sun: int) -> void:
 		sub2.anchor_right = 0.0
 		sub3.anchor_right = 0.0
 		return
-	var most = float(max(crest, mountain, sun))
+	var most: float = float(max(crest, mountain, sun))
 	sub1.anchor_right = crest / most
 	sub2.anchor_right = mountain / most
 	sub3.anchor_right = sun / most

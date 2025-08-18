@@ -41,7 +41,6 @@ text = "Tap Here To Draw"
 
 [node name="Card" type="Control" parent="CardArea/CardContainer"]
 layout_mode = 1
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -51,30 +50,90 @@ grow_vertical = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.4
 
 [node name="Quadrant2" parent="CardArea/CardContainer/Card" instance=ExtResource("1_80nbo")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.4
 
 [node name="Quadrant3" parent="CardArea/CardContainer/Card" instance=ExtResource("1_80nbo")]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.5
+anchor_top = 0.4
 anchor_right = 0.5
+anchor_bottom = 0.8
 
 [node name="Quadrant4" parent="CardArea/CardContainer/Card" instance=ExtResource("1_80nbo")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.4
+anchor_bottom = 0.8
 
-[node name="Button" type="Button" parent="CardArea/CardContainer"]
+[node name="Effect" type="ColorRect" parent="CardArea/CardContainer/Card"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.215902, 0.215902, 0.215902, 1)
+
+[node name="Icon" type="TextureRect" parent="CardArea/CardContainer/Card/Effect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shuffle" type="TextureRect" parent="CardArea/CardContainer/Card/Effect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.5
+anchor_right = 0.75
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Draw" type="Button" parent="CardArea/CardContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Reshuffle" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_bottom = 60.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="Reshuffle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="CardArea/CardContainer/Draw" to="." method="_on_draw_pressed"]
+[connection signal="pressed" from="Reshuffle" to="." method="_on_reshuffle_pressed"]

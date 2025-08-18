@@ -24,4 +24,7 @@ func set_aspect(value: Data.Aspect) -> void:
 
 func set_number(value: int) -> void:
 	_number = value
-	number_label.text = "%+d" % _number
+	if _number > 0:
+		number_label.text = "%+d" % _number
+	else:
+		number_label.text = "%d" % _number

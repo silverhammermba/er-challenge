@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce10vyavw0ujc"]
+
+[ext_resource type="Script" uid="uid://rmdshbhwscj6" path="res://bar.gd" id="1_qyha7"]
+
+[node name="Bar" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+script = ExtResource("1_qyha7")
+
+[node name="Sub" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.33
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.541176, 0, 0, 1)
+
+[node name="Sub2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.33
+anchor_right = 0.5
+anchor_bottom = 0.66
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0.564706, 1)
+
+[node name="Sub3" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.66
+anchor_right = 0.3
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.356863, 0, 1)

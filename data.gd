@@ -18,7 +18,18 @@ class Card:
 	func need_shuffle() -> bool:
 		return fitness == -2 || spirit == -2 || focus == -2 || awareness == -2
 
-var cards: Array[Card] = [
+	func aspect(asp: Aspect) -> int:
+		match asp:
+			Aspect.FITNESS:
+				return fitness
+			Aspect.SPIRIT:
+				return spirit
+			Aspect.FOCUS:
+				return focus
+			_: # awareness
+				return awareness
+
+static var cards: Array[Card] = [
 	Card.new(1, 1, 0, -2, Effect.CREST),
 	Card.new(0, 1, -1, 0, Effect.CREST),
 	Card.new(-1, 0, 1, 0, Effect.SUN),
@@ -59,19 +70,19 @@ static func aspect_name(aspect: Aspect) -> String:
 static func aspect_color(aspect: Aspect) -> Color:
 	match aspect:
 		Aspect.FITNESS:
-			return Color.RED
+			return Color("ba2b26")
 		Aspect.SPIRIT:
-			return Color.ORANGE
+			return Color("e0af26")
 		Aspect.FOCUS:
-			return Color.GREEN
+			return Color("4062a1")
 		_: # awareness
-			return Color.BLUE
+			return Color("2b9243")
 
 static func effect_color(effect: Effect) -> Color:
 	match effect:
 		Effect.CREST:
-			return Color.DARK_RED
+			return Color("98212c")
 		Effect.MOUNTAIN:
-			return Color.DARK_BLUE
+			return Color("224879")
 		_: # sun
-			return Color.DARK_ORANGE
+			return Color("db8426")

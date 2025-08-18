@@ -51,7 +51,7 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 80
-text = "Tap Here To Draw"
+text = "tap"
 
 [node name="Card" type="Control" parent="CardArea/CardContainer"]
 visible = false

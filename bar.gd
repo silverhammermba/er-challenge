@@ -19,7 +19,7 @@ func set_aspect(value: Data.Aspect) -> void:
 
 func update_sub_dist(crest: int, mountain: int, sun: int) -> void:
 	# if all equal, hide the subbars rather than completely cover the bar
-	if crest == mountain && mountain == sun:
+	if crest == mountain and mountain == sun:
 		sub1.anchor_right = 0.0
 		sub2.anchor_right = 0.0
 		sub3.anchor_right = 0.0

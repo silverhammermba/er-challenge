@@ -8,6 +8,12 @@ class Card:
 	var awareness: int = 0
 	var effect: Effect = Effect.CREST
 
+	const fitness_save_key = "fitness"
+	const spirit_save_key = "spirit"
+	const focus_save_key = "focus"
+	const awareness_save_key = "awareness"
+	const effect_save_key = "effect"
+
 	func _init(awa: int, spi: int, fit: int, foc: int, eff: Effect) -> void:
 		fitness = fit
 		spirit = spi
@@ -16,7 +22,7 @@ class Card:
 		effect = eff
 
 	func need_shuffle() -> bool:
-		return fitness == -2 || spirit == -2 || focus == -2 || awareness == -2
+		return fitness == -2 or spirit == -2 or focus == -2 or awareness == -2
 
 	func aspect(asp: Aspect) -> int:
 		match asp:
@@ -28,6 +34,18 @@ class Card:
 				return focus
 			_: # awareness
 				return awareness
+	
+	func save_data() -> Dictionary[String, int]:
+		return {
+			"fitness": fitness,
+			"spirit": spirit,
+			"focus": focus,
+			"awareness": awareness,
+			"effect": effect
+		}
+	
+	static func load(data: Dictionary) -> Card:
+		return new(data[awareness_save_key], data[spirit_save_key], data[fitness_save_key], data[focus_save_key], data[effect_save_key])
 
 static var cards: Array[Card] = [
 	Card.new(1, 1, 0, -2, Effect.CREST),

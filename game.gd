@@ -17,6 +17,9 @@ const Data = preload("data.gd")
 @onready var bar_cst: ColorRect = $EffectBars/Bar
 @onready var bar_mnt: ColorRect = $EffectBars/Bar2
 @onready var bar_sun: ColorRect = $EffectBars/Bar3
+@export var crest_icon: Texture2D
+@export var mountain_icon: Texture2D
+@export var sun_icon: Texture2D
 
 var deck: Array[Data.Card] = []
 
@@ -40,7 +43,13 @@ func update_card(new_card: Data.Card) -> void:
 	quad3.set_number(new_card.fitness)
 	quad4.set_number(new_card.focus)
 	effect.color = Data.effect_color(new_card.effect)
-	# TODO: effect icon
+	match new_card.effect:
+		Data.Effect.CREST:
+			effect_icon.texture = crest_icon
+		Data.Effect.MOUNTAIN:
+			effect_icon.texture = mountain_icon
+		_: # sun
+			effect_icon.texture = sun_icon
 	effect_shuffle.visible = new_card.need_shuffle()
 
 func shuffle() -> void:
@@ -71,8 +80,8 @@ func update_dist() -> void:
 	bar_fit.update_dist(deck)
 	bar_foc.update_dist(deck)
 	var counts: Dictionary[Data.Effect, int] = {Data.Effect.CREST: 0, Data.Effect.MOUNTAIN: 0, Data.Effect.SUN: 0}
-	for card in deck:
-		counts[card.effect] += 1
+	for c in deck:
+		counts[c.effect] += 1
 	var most: float = float(max(counts[Data.Effect.CREST], counts[Data.Effect.MOUNTAIN], counts[Data.Effect.SUN]))
 	bar_cst.anchor_top = 1 - counts[Data.Effect.CREST] / most
 	bar_mnt.anchor_top = 1 - counts[Data.Effect.MOUNTAIN] / most

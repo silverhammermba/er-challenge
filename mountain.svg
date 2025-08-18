@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100"
+   height="100"
+   viewBox="0 0 26.458333 26.458333"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   sodipodi:docname="mountain.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ff0000"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     inkscape:zoom="8.2616016"
+     inkscape:cx="44.42238"
+     inkscape:cy="50.050828"
+     inkscape:window-width="2048"
+     inkscape:window-height="1208"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" /><defs
+     id="defs1"><inkscape:path-effect
+       effect="mirror_symmetry"
+       start_point="13.213449,-0.19161031"
+       end_point="13.213449,23.486124"
+       center_point="13.213449,11.647257"
+       id="path-effect10"
+       is_visible="true"
+       lpeversion="1.2"
+       lpesatellites="#path11"
+       mode="vertical"
+       discard_orig_path="false"
+       fuse_paths="false"
+       oposite_fuse="false"
+       split_items="true"
+       split_open="false"
+       link_styles="false" /></defs><g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"><path
+       id="path15"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke-width:0.264583"
+       d="M 12.455054 2.3936523 L 11.149707 6.062679 L 9.5275838 13.772286 L 9.1513794 11.680424 L 8.0589396 14.751554 L 6.0962687 9.8304077 L 2.7786418 21.470007 C 3.5640491 21.755686 4.3533907 22.004689 5.1454224 22.217765 L 5.1459391 22.217765 L 5.6952596 20.513993 L 6.3815226 22.332487 L 6.718453 21.288106 L 7.2507202 22.698873 C 9.0913702 23.046058 10.93536 23.203226 12.758394 23.177397 L 13.519588 20.818368 L 14.229622 22.699906 L 14.542265 21.730457 L 15.039909 23.048722 C 15.750377 22.978586 16.455711 22.880754 17.155025 22.7552 L 17.559652 21.316012 L 17.865576 22.245671 L 18.251082 20.873661 L 18.696533 22.227584 L 18.859314 21.647774 L 19.08514 22.335071 C 20.663389 21.929934 22.200952 21.381507 23.679692 20.695894 L 19.853052 11.306803 L 19.716626 11.722282 L 19.036047 9.3022746 L 18.316195 7.5359741 L 16.851168 12.623002 L 12.455054 2.3936523 z " /></g></svg>

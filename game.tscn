@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfh16n72apleo"]
+[gd_scene load_steps=10 format=3 uid="uid://bfh16n72apleo"]
 
 [ext_resource type="PackedScene" uid="uid://bgdgth5d10ob2" path="res://quadrant.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bxonyhnfxay2b" path="res://game.gd" id="1_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://c4xelg78s82tf" path="res://mountain.svg" id="3_eow3j"]
 [ext_resource type="Texture2D" uid="uid://cxp6c01b74lca" path="res://shuffle.svg" id="3_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://8rujtyskfdu2" path="res://bars.tscn" id="3_feb5d"]
+[ext_resource type="Texture2D" uid="uid://mib4pbmf5h2k" path="res://sun.svg" id="3_ryrav"]
+[ext_resource type="Texture2D" uid="uid://dql4xl1db88r8" path="res://crest.svg" id="5_7jktm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_feb5d"]
 bg_color = Color(0.811765, 0.811765, 0.811765, 0.180392)
@@ -18,6 +21,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e2o6t")
+crest_icon = ExtResource("5_7jktm")
+mountain_icon = ExtResource("3_eow3j")
+sun_icon = ExtResource("3_ryrav")
 
 [node name="CardArea" type="Control" parent="."]
 layout_mode = 1
@@ -44,9 +50,11 @@ offset_right = 69.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 80
 text = "Tap Here To Draw"
 
 [node name="Card" type="Control" parent="CardArea/CardContainer"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -215,25 +223,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="EffectBars"]
+[node name="Crest" type="TextureRect" parent="EffectBars"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.33
 anchor_right = 0.33
+offset_left = 0.119995
+offset_top = 10.676
+offset_right = 0.310396
+offset_bottom = -0.400024
+texture = ExtResource("5_7jktm")
+expand_mode = 1
 
-[node name="TextureRect2" type="TextureRect" parent="EffectBars"]
+[node name="Mountain" type="TextureRect" parent="EffectBars"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.33
 anchor_top = -0.33
 anchor_right = 0.66
+offset_left = 0.190401
+offset_top = 11.076
+offset_right = -0.619198
+texture = ExtResource("3_eow3j")
+expand_mode = 1
 
-[node name="TextureRect3" type="TextureRect" parent="EffectBars"]
+[node name="Sun" type="TextureRect" parent="EffectBars"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.66
 anchor_top = -0.33
 anchor_right = 1.0
+offset_left = 0.380802
+offset_top = 8.07598
+offset_right = 0.880005
+texture = ExtResource("3_ryrav")
+expand_mode = 1
 
 [connection signal="pressed" from="CardArea/CardContainer/Draw" to="." method="_on_draw_pressed"]
 [connection signal="pressed" from="Reshuffle" to="." method="_on_reshuffle_pressed"]

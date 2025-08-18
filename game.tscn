@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfh16n72apleo"]
+[gd_scene load_steps=7 format=3 uid="uid://bfh16n72apleo"]
 
 [ext_resource type="PackedScene" uid="uid://bgdgth5d10ob2" path="res://quadrant.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bxonyhnfxay2b" path="res://game.gd" id="1_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://cxp6c01b74lca" path="res://shuffle.svg" id="3_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://8rujtyskfdu2" path="res://bars.tscn" id="3_feb5d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_feb5d"]
@@ -116,6 +117,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
+texture = ExtResource("3_fc0e3")
 
 [node name="Draw" type="Button" parent="CardArea/CardContainer"]
 layout_mode = 1
@@ -132,22 +134,16 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -60.0
-offset_bottom = 60.0
+offset_left = -69.0
+offset_bottom = 69.0
 grow_horizontal = 0
-
-[node name="TextureRect" type="TextureRect" parent="Reshuffle"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+icon = ExtResource("3_fc0e3")
+expand_icon = true
 
 [node name="BarArea" type="Control" parent="."]
 layout_mode = 1
 anchor_left = 0.725
-anchor_right = 0.95
+anchor_right = 0.92
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -155,7 +151,7 @@ grow_vertical = 2
 [node name="Bars" type="Control" parent="BarArea"]
 layout_mode = 1
 anchor_top = 0.05
-anchor_right = 0.8
+anchor_right = 1.0
 anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
@@ -181,6 +177,63 @@ anchor_bottom = 0.75
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.75
+
+[node name="EffectBars" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.94
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 0.95
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Bar" type="ColorRect" parent="EffectBars"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.33
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bar2" type="ColorRect" parent="EffectBars"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33
+anchor_top = 0.5
+anchor_right = 0.66
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bar3" type="ColorRect" parent="EffectBars"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.66
+anchor_top = 0.25
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="EffectBars"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.33
+anchor_right = 0.33
+
+[node name="TextureRect2" type="TextureRect" parent="EffectBars"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33
+anchor_top = -0.33
+anchor_right = 0.66
+
+[node name="TextureRect3" type="TextureRect" parent="EffectBars"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.66
+anchor_top = -0.33
+anchor_right = 1.0
 
 [connection signal="pressed" from="CardArea/CardContainer/Draw" to="." method="_on_draw_pressed"]
 [connection signal="pressed" from="Reshuffle" to="." method="_on_reshuffle_pressed"]

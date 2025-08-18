@@ -14,6 +14,9 @@ const Data = preload("data.gd")
 @onready var bar_spi: Bars = $BarArea/Bars/Spirit
 @onready var bar_fit: Bars = $BarArea/Bars/Fitness
 @onready var bar_foc: Bars = $BarArea/Bars/Focus
+@onready var bar_cst: ColorRect = $EffectBars/Bar
+@onready var bar_mnt: ColorRect = $EffectBars/Bar2
+@onready var bar_sun: ColorRect = $EffectBars/Bar3
 
 var deck: Array[Data.Card] = []
 
@@ -26,6 +29,9 @@ func _ready() -> void:
 	bar_spi.set_aspect(Data.Aspect.SPIRIT)
 	bar_fit.set_aspect(Data.Aspect.FITNESS)
 	bar_foc.set_aspect(Data.Aspect.FOCUS)
+	bar_cst.color = Data.effect_color(Data.Effect.CREST)
+	bar_mnt.color = Data.effect_color(Data.Effect.MOUNTAIN)
+	bar_sun.color = Data.effect_color(Data.Effect.SUN)
 	reshuffle()
 
 func update_card(new_card: Data.Card) -> void:
@@ -64,6 +70,14 @@ func update_dist() -> void:
 	bar_spi.update_dist(deck)
 	bar_fit.update_dist(deck)
 	bar_foc.update_dist(deck)
+	var counts: Dictionary[Data.Effect, int] = {Data.Effect.CREST: 0, Data.Effect.MOUNTAIN: 0, Data.Effect.SUN: 0}
+	for card in deck:
+		counts[card.effect] += 1
+	var most: float = float(max(counts[Data.Effect.CREST], counts[Data.Effect.MOUNTAIN], counts[Data.Effect.SUN]))
+	bar_cst.anchor_top = 1 - counts[Data.Effect.CREST] / most
+	bar_mnt.anchor_top = 1 - counts[Data.Effect.MOUNTAIN] / most
+	bar_sun.anchor_top = 1 - counts[Data.Effect.SUN] / most
+		
 
 func _on_reshuffle_pressed() -> void:
 	reshuffle()

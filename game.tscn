@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfh16n72apleo"]
+[gd_scene load_steps=6 format=3 uid="uid://bfh16n72apleo"]
 
 [ext_resource type="PackedScene" uid="uid://bgdgth5d10ob2" path="res://quadrant.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bxonyhnfxay2b" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://8rujtyskfdu2" path="res://bars.tscn" id="3_feb5d"]
 
-[node name="Control" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_feb5d"]
+bg_color = Color(0.811765, 0.811765, 0.811765, 0.180392)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_feb5d"]
+
+[node name="Game" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -119,6 +124,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_feb5d")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_feb5d")
 
 [node name="Reshuffle" type="Button" parent="."]
 layout_mode = 1

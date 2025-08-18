@@ -44,11 +44,11 @@ func shuffle() -> void:
 func reshuffle() -> void:
 	shuffle()
 	# uncomment to always put -2s at the end
-	deck.sort_custom(shuffle_last)
+	#deck.sort_custom(shuffle_last)
 	card.visible = false
 	update_dist()
 	
-func shuffle_last(a: Data.Card, b: Data.Card) -> bool:
+func shuffle_last(a: Data.Card, _b: Data.Card) -> bool:
 	return a.need_shuffle()
 
 func draw() -> void:

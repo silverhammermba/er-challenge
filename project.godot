@@ -23,6 +23,10 @@ gdscript/warnings/unsafe_method_access=1
 gdscript/warnings/unsafe_cast=1
 gdscript/warnings/unsafe_call_argument=1
 
+[gui]
+
+theme/custom_font="uid://c55y14nuiv4v8"
+
 [rendering]
 
 renderer/rendering_method="mobile"

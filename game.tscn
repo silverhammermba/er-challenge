@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfh16n72apleo"]
+
+[ext_resource type="PackedScene" uid="uid://bgdgth5d10ob2" path="res://quadrant.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://bxonyhnfxay2b" path="res://game.gd" id="1_e2o6t"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e2o6t")
+
+[node name="CardArea" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 0.8
+anchor_bottom = 1.0
+
+[node name="CardContainer" type="Control" parent="CardArea"]
+layout_mode = 1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+
+[node name="Instructions" type="Label" parent="CardArea/CardContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -11.5
+offset_right = 69.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tap Here To Draw"
+
+[node name="Card" type="Control" parent="CardArea/CardContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Quadrant" parent="CardArea/CardContainer/Card" instance=ExtResource("1_80nbo")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="Quadrant2" parent="CardArea/CardContainer/Card" instance=ExtResource("1_80nbo")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_bottom = 0.5
+
+[node name="Quadrant3" parent="CardArea/CardContainer/Card" instance=ExtResource("1_80nbo")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.5
+
+[node name="Quadrant4" parent="CardArea/CardContainer/Card" instance=ExtResource("1_80nbo")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+
+[node name="Button" type="Button" parent="CardArea/CardContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

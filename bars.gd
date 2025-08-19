@@ -6,8 +6,27 @@ const Data = preload("data.gd")
 @onready var bar2: Bar = $BarContainer/Bar2
 @onready var bar3: Bar = $BarContainer/Bar3
 @onready var bar4: Bar = $BarContainer/Bar4
+@onready var label1: Label = $Label
+@onready var label2: Label = $Label2
+@onready var label3: Label = $Label3
+@onready var label4: Label = $Label4
 
 var _aspect: Data.Aspect = Data.Aspect.FITNESS
+
+func flip_text() -> void:
+	label1.scale.x = -1
+	label2.scale.x = -1
+	label3.scale.x = -1
+	label4.scale.x = -1
+	var width = label1.anchor_right - label1.anchor_left
+	label1.anchor_left += width
+	label1.anchor_right += width
+	label2.anchor_left += width
+	label2.anchor_right += width
+	label3.anchor_left += width
+	label3.anchor_right += width
+	label4.anchor_left += width
+	label4.anchor_right += width
 
 func set_aspect(value: Data.Aspect) -> void:
 	_aspect = value

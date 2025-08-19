@@ -10,9 +10,9 @@ const Data = preload("data.gd")
 @onready var effect: ColorRect = $CardArea/CardContainer/Card/Effect
 @onready var effect_icon: TextureRect = $CardArea/CardContainer/Card/Effect/Icon
 @onready var effect_shuffle: TextureRect = $CardArea/CardContainer/Card/Effect/Shuffle
-@onready var bar_awa: Bars = $BarArea/Bars/Awareness
+@onready var bar_awa: Bars = $BarArea2/Bars/Awareness
 @onready var bar_spi: Bars = $BarArea/Bars/Spirit
-@onready var bar_fit: Bars = $BarArea/Bars/Fitness
+@onready var bar_fit: Bars = $BarArea2/Bars/Fitness
 @onready var bar_foc: Bars = $BarArea/Bars/Focus
 @onready var bar_cst: ColorRect = $EffectBars/Bar
 @onready var bar_mnt: ColorRect = $EffectBars/Bar2
@@ -35,8 +35,10 @@ func _ready() -> void:
 	quad3.set_aspect(Data.Aspect.FITNESS)
 	quad4.set_aspect(Data.Aspect.FOCUS)
 	bar_awa.set_aspect(Data.Aspect.AWARENESS)
+	bar_awa.flip_text()
 	bar_spi.set_aspect(Data.Aspect.SPIRIT)
 	bar_fit.set_aspect(Data.Aspect.FITNESS)
+	bar_fit.flip_text()
 	bar_foc.set_aspect(Data.Aspect.FOCUS)
 	bar_cst.color = Data.effect_color(Data.Effect.CREST)
 	bar_mnt.color = Data.effect_color(Data.Effect.MOUNTAIN)
@@ -93,9 +95,9 @@ func update_dist() -> void:
 	for c in deck:
 		counts[c.effect] += 1
 	var most: float = float(max(counts[Data.Effect.CREST], counts[Data.Effect.MOUNTAIN], counts[Data.Effect.SUN]))
-	bar_cst.anchor_top = 1 - counts[Data.Effect.CREST] / most
-	bar_mnt.anchor_top = 1 - counts[Data.Effect.MOUNTAIN] / most
-	bar_sun.anchor_top = 1 - counts[Data.Effect.SUN] / most
+	bar_cst.anchor_right = counts[Data.Effect.CREST] / most
+	bar_mnt.anchor_right = counts[Data.Effect.MOUNTAIN] / most
+	bar_sun.anchor_right = counts[Data.Effect.SUN] / most
 
 func save_game() -> void:
 	var save_file := FileAccess.open(save_path, FileAccess.WRITE)

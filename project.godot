@@ -25,6 +25,11 @@ gdscript/warnings/unsafe_method_access=1
 gdscript/warnings/unsafe_cast=1
 gdscript/warnings/unsafe_call_argument=1
 
+[display]
+
+window/size/viewport_width=2266
+window/size/viewport_height=1488
+
 [gui]
 
 theme/custom_font="uid://c55y14nuiv4v8"
@@ -32,3 +37,4 @@ theme/custom_font="uid://c55y14nuiv4v8"
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

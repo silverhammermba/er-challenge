@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bfh16n72apleo"]
+[gd_scene load_steps=11 format=3 uid="uid://bfh16n72apleo"]
 
 [ext_resource type="PackedScene" uid="uid://bgdgth5d10ob2" path="res://quadrant.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bxonyhnfxay2b" path="res://game.gd" id="1_e2o6t"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://8rujtyskfdu2" path="res://bars.tscn" id="3_feb5d"]
 [ext_resource type="Texture2D" uid="uid://mib4pbmf5h2k" path="res://sun.svg" id="3_ryrav"]
 [ext_resource type="Texture2D" uid="uid://dql4xl1db88r8" path="res://crest.svg" id="5_7jktm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eow3j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_feb5d"]
 bg_color = Color(0.811765, 0.811765, 0.811765, 0.180392)
@@ -27,7 +29,8 @@ sun_icon = ExtResource("3_ryrav")
 
 [node name="CardArea" type="Control" parent="."]
 layout_mode = 1
-anchor_right = 0.75
+anchor_left = 0.2
+anchor_right = 0.8
 anchor_bottom = 1.0
 
 [node name="CardContainer" type="Control" parent="CardArea"]
@@ -50,11 +53,10 @@ offset_right = 69.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 160
 text = "tap"
 
 [node name="Card" type="Control" parent="CardArea/CardContainer"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -105,26 +107,29 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -96.98
+offset_top = -97.04
+offset_right = 3.01996
+offset_bottom = 2.96002
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("3_eow3j")
 
 [node name="Shuffle" type="TextureRect" parent="CardArea/CardContainer/Card/Effect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.75
+anchor_left = 0.8
 anchor_top = 0.5
-anchor_right = 0.75
+anchor_right = 0.8
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -65.6201
+offset_top = -65.99
+offset_right = 34.3799
+offset_bottom = 34.01
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(1.37, 1.37)
 texture = ExtResource("3_fc0e3")
 
 [node name="Draw" type="Button" parent="CardArea/CardContainer"]
@@ -134,91 +139,101 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eow3j")
 theme_override_styles/hover = SubResource("StyleBoxFlat_feb5d")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_feb5d")
 
-[node name="Reshuffle" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -69.0
-offset_bottom = 69.0
-grow_horizontal = 0
-icon = ExtResource("3_fc0e3")
-expand_icon = true
-
 [node name="BarArea" type="Control" parent="."]
 layout_mode = 1
-anchor_left = 0.725
-anchor_right = 0.92
-anchor_bottom = 1.0
+anchor_left = 0.8
+anchor_top = 0.05
+anchor_right = 0.975
+anchor_bottom = 0.768
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Bars" type="Control" parent="BarArea"]
 layout_mode = 1
-anchor_top = 0.05
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.95
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Awareness" parent="BarArea/Bars" instance=ExtResource("3_feb5d")]
-layout_mode = 1
-anchors_preset = -1
-anchor_bottom = 0.25
 
 [node name="Spirit" parent="BarArea/Bars" instance=ExtResource("3_feb5d")]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.25
-anchor_bottom = 0.5
-
-[node name="Fitness" parent="BarArea/Bars" instance=ExtResource("3_feb5d")]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.5
-anchor_bottom = 0.75
+anchor_top = 0.1
+anchor_bottom = 0.4
 
 [node name="Focus" parent="BarArea/Bars" instance=ExtResource("3_feb5d")]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.75
+anchor_top = 0.6
+anchor_bottom = 0.9
+
+[node name="BarArea2" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.2
+anchor_top = 0.05
+anchor_right = 0.375
+anchor_bottom = 0.768
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bars" type="Control" parent="BarArea2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(-1, 1)
+
+[node name="Awareness" parent="BarArea2/Bars" instance=ExtResource("3_feb5d")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_bottom = 0.4
+
+[node name="Fitness" parent="BarArea2/Bars" instance=ExtResource("3_feb5d")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.6
+anchor_bottom = 0.9
 
 [node name="EffectBars" type="Control" parent="."]
 layout_mode = 1
-anchor_left = 0.94
-anchor_top = 0.8
-anchor_right = 1.0
+anchor_left = 0.8
+anchor_top = 0.79
+anchor_right = 0.9
 anchor_bottom = 0.95
+offset_right = -0.00012207
 grow_horizontal = 0
 grow_vertical = 0
 
 [node name="Bar" type="ColorRect" parent="EffectBars"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.33
-anchor_bottom = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.33
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Bar2" type="ColorRect" parent="EffectBars"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.33
-anchor_top = 0.5
-anchor_right = 0.66
-anchor_bottom = 1.0
+anchor_top = 0.33
+anchor_right = 0.5
+anchor_bottom = 0.66
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Bar3" type="ColorRect" parent="EffectBars"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.66
-anchor_top = 0.25
-anchor_right = 1.0
+anchor_top = 0.66
+anchor_right = 0.75
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -226,38 +241,53 @@ grow_vertical = 2
 [node name="Crest" type="TextureRect" parent="EffectBars"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = -0.33
-anchor_right = 0.33
-offset_left = 0.119995
-offset_top = 10.676
-offset_right = 0.310396
-offset_bottom = -0.400024
+anchor_right = 1.0
+anchor_bottom = 0.33
+offset_left = 234.0
+offset_right = 100.4
+offset_bottom = 0.433609
 texture = ExtResource("5_7jktm")
 expand_mode = 1
+stretch_mode = 3
 
 [node name="Mountain" type="TextureRect" parent="EffectBars"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.33
-anchor_top = -0.33
-anchor_right = 0.66
-offset_left = 0.190401
-offset_top = 11.076
-offset_right = -0.619198
+anchor_top = 0.33
+anchor_right = 1.0
+anchor_bottom = 0.66
+offset_left = 234.2
+offset_top = 8.91359
+offset_right = 110.6
+offset_bottom = -2.6528
 texture = ExtResource("3_eow3j")
 expand_mode = 1
+stretch_mode = 3
 
 [node name="Sun" type="TextureRect" parent="EffectBars"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.66
-anchor_top = -0.33
+anchor_top = 0.66
 anchor_right = 1.0
-offset_left = 0.380802
-offset_top = 8.07598
-offset_right = 0.880005
+anchor_bottom = 1.0
+offset_left = 240.2
+offset_top = 9.3472
+offset_right = 97.6001
+offset_bottom = 1.40002
 texture = ExtResource("3_ryrav")
 expand_mode = 1
+stretch_mode = 3
+
+[node name="Reshuffle" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -139.0
+offset_bottom = 132.0
+grow_horizontal = 0
+icon = ExtResource("3_fc0e3")
+expand_icon = true
 
 [connection signal="pressed" from="CardArea/CardContainer/Draw" to="." method="_on_draw_pressed"]
 [connection signal="pressed" from="Reshuffle" to="." method="_on_reshuffle_pressed"]

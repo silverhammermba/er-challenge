@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfh16n72apleo"]
+[gd_scene load_steps=10 format=3 uid="uid://bfh16n72apleo"]
 
 [ext_resource type="PackedScene" uid="uid://bgdgth5d10ob2" path="res://quadrant.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bxonyhnfxay2b" path="res://game.gd" id="1_e2o6t"]
@@ -9,9 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://dql4xl1db88r8" path="res://crest.svg" id="5_7jktm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eow3j"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_feb5d"]
-bg_color = Color(0.811765, 0.811765, 0.811765, 0.180392)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_feb5d"]
 
@@ -26,6 +23,36 @@ script = ExtResource("1_e2o6t")
 crest_icon = ExtResource("5_7jktm")
 mountain_icon = ExtResource("3_eow3j")
 sun_icon = ExtResource("3_ryrav")
+
+[node name="BarArea2" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.2
+anchor_top = 0.05
+anchor_right = 0.375
+anchor_bottom = 0.768
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bars" type="Control" parent="BarArea2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(-1, 1)
+
+[node name="Awareness" parent="BarArea2/Bars" instance=ExtResource("3_feb5d")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_bottom = 0.4
+
+[node name="Fitness" parent="BarArea2/Bars" instance=ExtResource("3_feb5d")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.6
+anchor_bottom = 0.9
 
 [node name="CardArea" type="Control" parent="."]
 layout_mode = 1
@@ -139,8 +166,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_eow3j")
-theme_override_styles/hover = SubResource("StyleBoxFlat_feb5d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_eow3j")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_feb5d")
 
 [node name="BarArea" type="Control" parent="."]
@@ -172,41 +198,11 @@ anchors_preset = -1
 anchor_top = 0.6
 anchor_bottom = 0.9
 
-[node name="BarArea2" type="Control" parent="."]
-layout_mode = 1
-anchor_left = 0.2
-anchor_top = 0.05
-anchor_right = 0.375
-anchor_bottom = 0.768
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Bars" type="Control" parent="BarArea2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(-1, 1)
-
-[node name="Awareness" parent="BarArea2/Bars" instance=ExtResource("3_feb5d")]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.1
-anchor_bottom = 0.4
-
-[node name="Fitness" parent="BarArea2/Bars" instance=ExtResource("3_feb5d")]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.6
-anchor_bottom = 0.9
-
 [node name="EffectBars" type="Control" parent="."]
 layout_mode = 1
 anchor_left = 0.8
 anchor_top = 0.79
-anchor_right = 0.9
+anchor_right = 0.93
 anchor_bottom = 0.95
 offset_right = -0.00012207
 grow_horizontal = 0
@@ -243,9 +239,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.33
-offset_left = 234.0
-offset_right = 100.4
-offset_bottom = 0.433609
+offset_left = 277.2
+offset_top = -3.52002
+offset_right = 143.6
+offset_bottom = -3.08641
 texture = ExtResource("5_7jktm")
 expand_mode = 1
 stretch_mode = 3
@@ -256,10 +253,10 @@ anchors_preset = -1
 anchor_top = 0.33
 anchor_right = 1.0
 anchor_bottom = 0.66
-offset_left = 234.2
-offset_top = 8.91359
-offset_right = 110.6
-offset_bottom = -2.6528
+offset_left = 275.2
+offset_top = 5.91359
+offset_right = 151.6
+offset_bottom = -5.6528
 texture = ExtResource("3_eow3j")
 expand_mode = 1
 stretch_mode = 3
@@ -270,10 +267,10 @@ anchors_preset = -1
 anchor_top = 0.66
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 240.2
-offset_top = 9.3472
-offset_right = 97.6001
-offset_bottom = 1.40002
+offset_left = 284.4
+offset_top = 10.8272
+offset_right = 141.8
+offset_bottom = 2.88
 texture = ExtResource("3_ryrav")
 expand_mode = 1
 stretch_mode = 3

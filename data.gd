@@ -1,3 +1,4 @@
+# NEVER REORDER THESE. IT WILL UNDETECTABLY BREAK SAVED GAMES
 enum Aspect { FITNESS, SPIRIT, FOCUS, AWARENESS }
 enum Effect { CREST, MOUNTAIN, SUN }
 
@@ -37,15 +38,36 @@ class Card:
 	
 	func save_data() -> Dictionary[String, int]:
 		return {
-			"fitness": fitness,
-			"spirit": spirit,
-			"focus": focus,
-			"awareness": awareness,
-			"effect": effect
+			fitness_save_key: fitness,
+			spirit_save_key: spirit,
+			focus_save_key: focus,
+			awareness_save_key: awareness,
+			effect_save_key: effect
 		}
 	
 	static func load(data: Dictionary) -> Card:
-		return new(data[awareness_save_key], data[spirit_save_key], data[fitness_save_key], data[focus_save_key], data[effect_save_key])
+		if fitness_save_key not in data or data[fitness_save_key] is not float:
+			print("Ignoring saved card. Need numeric ", fitness_save_key, " in ", data)
+			return null
+		var fit: int = data[fitness_save_key]
+		if spirit_save_key not in data or data[spirit_save_key] is not float:
+			print("Ignoring saved card. Need numeric ", spirit_save_key, " in ", data)
+			return null
+		var spi: int = data[spirit_save_key]
+		if focus_save_key not in data or data[focus_save_key] is not float:
+			print("Ignoring saved card. Need numeric ", focus_save_key, " in ", data)
+			return null
+		var foc: int = data[focus_save_key]
+		if awareness_save_key not in data or data[awareness_save_key] is not float:
+			print("Ignoring saved card. Need numeric ", awareness_save_key, " in ", data)
+			return null
+		var awa: int = data[awareness_save_key]
+		if effect_save_key not in data or data[effect_save_key] is not float:
+			print("Ignoring saved card. Need numeric ", effect_save_key, " in ", data)
+			return null
+		var eff: int = data[effect_save_key]
+
+		return new(awa, spi, fit, foc, eff)
 
 static var cards: Array[Card] = [
 	Card.new(1, 1, 0, -2, Effect.CREST),

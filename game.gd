@@ -1,8 +1,5 @@
 extends Control
 
-# TODO
-# scout 1 challenge card
-
 const Data = preload("data.gd")
 
 @onready var card: CardDisplay = $CardArea/CardContainer/Card
@@ -41,16 +38,17 @@ func _ready() -> void:
 func shuffle() -> void:
 	deck = Data.cards.duplicate()
 	deck.shuffle()
-
+	
 func reshuffle() -> void:
 	shuffle()
-	# uncomment to always put -2s at the end
+	# uncomment to always put -2s at the end of the deck (start of the array)
 	#deck.sort_custom(shuffle_last)
 	card.visible = false
 	current_card = null
 	update_dist()
-	DirAccess.remove_absolute(save_path)
-
+	# just in case the user scouts after reshuffling, ensure they scout the same card after reloading
+	save_game()
+	
 func shuffle_last(a: Data.Card, _b: Data.Card) -> bool:
 	return a.need_shuffle()
 
@@ -67,7 +65,7 @@ func scout(active: bool) -> void:
 	if active:
 		scout_card.update(deck[-1])
 	scout_overlay.visible = active
-
+	
 func update_dist() -> void:
 	bar_awa.update_dist(deck)
 	bar_spi.update_dist(deck)
@@ -76,10 +74,11 @@ func update_dist() -> void:
 	var counts: Dictionary[Data.Effect, int] = {Data.Effect.CREST: 0, Data.Effect.MOUNTAIN: 0, Data.Effect.SUN: 0}
 	for c in deck:
 		counts[c.effect] += 1
-	var most: float = float(max(counts[Data.Effect.CREST], counts[Data.Effect.MOUNTAIN], counts[Data.Effect.SUN]))
-	bar_cst.anchor_right = counts[Data.Effect.CREST] / most
-	bar_mnt.anchor_right = counts[Data.Effect.MOUNTAIN] / most
-	bar_sun.anchor_right = counts[Data.Effect.SUN] / most
+	var most: int = counts.values().max()
+	var denom := float(most)
+	bar_cst.anchor_right = counts[Data.Effect.CREST] / denom
+	bar_mnt.anchor_right = counts[Data.Effect.MOUNTAIN] / denom
+	bar_sun.anchor_right = counts[Data.Effect.SUN] / denom
 
 func save_game() -> void:
 	var save_file := FileAccess.open(save_path, FileAccess.WRITE)
@@ -90,35 +89,66 @@ func save_game() -> void:
 	save_file.store_line(json_string)
 
 func load_game() -> bool:
+	# open save file
 	if not FileAccess.file_exists(save_path):
 		return false
-
 	var save_file := FileAccess.open(save_path, FileAccess.READ)
 	if not save_file:
 		push_error("Couldn't load game! ", FileAccess.get_open_error())
 		return false
 
+	# load save dictionary
 	var json_string := save_file.get_line()
 	var json := JSON.new()
 	var parse_result := json.parse(json_string)
 	if not parse_result == OK:
-		push_error("Failed to parse saved game: ", json.get_error_message())
+		push_error("Failed to parse saved game JSON: ", json.get_error_message())
 	if not json.data:
 		return false
+	if json.data is not Dictionary:
+		print("Ignoring saved game. Save data is not an object.")
+		return false
 	var data: Dictionary = json.data
-	if version_save_key not in data or data[version_save_key] != save_version:
-		print("Incompatible save version. Ignoring saved game.")
+
+	# check version
+	if version_save_key not in data:
+		print("Ignoring saved game. No ", version_save_key, " found.")
+		return false
+	if data[version_save_key] is not float or data[version_save_key] != save_version:
+		print("Ignoring saved game. Need ", version_save_key, " ", save_version, " but found ", data[version_save_key])
 		return false
 
+	if deck_save_key not in data or data[deck_save_key] is not Array:
+		print("Ignoring saved game. Could not load ", deck_save_key, " array.")
+		return false
+	var saved_deck: Array = data[deck_save_key]
+
 	var new_deck: Array[Data.Card] = []
-	for card_data in data[deck_save_key]:
-		new_deck.append(Data.Card.load(card_data))
-	deck = new_deck
+	for card_data: Variant in saved_deck:
+		if card_data is not Dictionary:
+			print("Ignoring saved game. ", deck_save_key, " contains non-object card data: ", card_data)
+			return false
+		var card_dict: Dictionary = card_data
+		var loaded_card := Data.Card.load(card_dict)
+		if not loaded_card:
+			# Card.load should have already logged the failure reason
+			return false
+		new_deck.append(loaded_card)
+
+	card.visible = false
 	if current_save_key in data:
+		if data[current_save_key] is not Dictionary:
+			print("Ignoring saved game. ", current_save_key, " is not an object.")
+			return false
 		var card_data: Dictionary = data[current_save_key]
-		current_card = Data.Card.load(card_data)
+		var loaded_card := Data.Card.load(card_data)
+		if not loaded_card:
+			return false
+		current_card = loaded_card
 		card.update(current_card)
 		card.visible = true
+
+	deck = new_deck
 	update_dist()
 	return true
 

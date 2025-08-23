@@ -17,8 +17,9 @@ func set_aspect(value: Data.Aspect) -> void:
 	_aspect = value
 	color = Data.aspect_color(_aspect)
 
-func update_sub_dist(crest: int, mountain: int, sun: int) -> void:
-	var most: float = float(max(crest, mountain, sun))
-	sub1.anchor_right = crest / most
-	sub2.anchor_right = mountain / most
-	sub3.anchor_right = sun / most
+func update_sub_dist(counts: Dictionary[Data.Effect, int]) -> void:
+	var most: int = counts.values().max()
+	var denom := float(most)
+	sub1.anchor_right = counts[Data.Effect.CREST] / denom
+	sub2.anchor_right = counts[Data.Effect.MOUNTAIN] / denom
+	sub3.anchor_right = counts[Data.Effect.SUN] / denom

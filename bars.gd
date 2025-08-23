@@ -12,6 +12,11 @@ const Data = preload("data.gd")
 @onready var label4: Label = $Label4
 
 var _aspect: Data.Aspect = Data.Aspect.FITNESS
+var bars: Array[Bar]
+
+func _ready() -> void:
+	# matches up bar2: 0, bar1: 1, bar4: -2, bar3: -1
+	bars = [bar2, bar1, bar4, bar3]
 
 func flip_text() -> void:
 	label1.scale.x = -1
@@ -30,29 +35,25 @@ func flip_text() -> void:
 
 func set_aspect(value: Data.Aspect) -> void:
 	_aspect = value
-	bar1.set_aspect(_aspect)
-	bar2.set_aspect(_aspect)
-	bar3.set_aspect(_aspect)
-	bar4.set_aspect(_aspect)
+	for bar in bars:
+		bar.set_aspect(_aspect)
 
 func update_dist(deck: Array[Data.Card]) -> void:
-	var counts: Dictionary[int, int] = {-2: 0, -1: 0, 0: 0, 1: 0}
-	var effects: Dictionary[int, Variant] = {
-		-2: {Data.Effect.SUN: 0, Data.Effect.MOUNTAIN: 0, Data.Effect.CREST: 0},
-		-1: {Data.Effect.SUN: 0, Data.Effect.MOUNTAIN: 0, Data.Effect.CREST: 0},
-		0: {Data.Effect.SUN: 0, Data.Effect.MOUNTAIN: 0, Data.Effect.CREST: 0},
-		1: {Data.Effect.SUN: 0, Data.Effect.MOUNTAIN: 0, Data.Effect.CREST: 0}
-	}
+	var counts: Array[int] = [0, 0, 0, 0]
+	var effects: Array[Dictionary] = [
+		{Data.Effect.SUN: 0, Data.Effect.MOUNTAIN: 0, Data.Effect.CREST: 0},
+		{Data.Effect.SUN: 0, Data.Effect.MOUNTAIN: 0, Data.Effect.CREST: 0},
+		{Data.Effect.SUN: 0, Data.Effect.MOUNTAIN: 0, Data.Effect.CREST: 0},
+		{Data.Effect.SUN: 0, Data.Effect.MOUNTAIN: 0, Data.Effect.CREST: 0}
+	]
 	for card in deck:
 		var asp: int = card.aspect(_aspect)
 		counts[asp] += 1
 		effects[asp][card.effect] += 1
-	var most: float = float(max(counts[-2], counts[-1], counts[0], counts[1]))
-	bar1.anchor_right = counts[1] / most
-	bar2.anchor_right = counts[0] / most
-	bar3.anchor_right = counts[-1] / most
-	bar4.anchor_right = counts[-2] / most
-	bar1.update_sub_dist(effects[1][Data.Effect.CREST], effects[1][Data.Effect.MOUNTAIN], effects[1][Data.Effect.SUN])
-	bar2.update_sub_dist(effects[0][Data.Effect.CREST], effects[0][Data.Effect.MOUNTAIN], effects[0][Data.Effect.SUN])
-	bar3.update_sub_dist(effects[-1][Data.Effect.CREST], effects[-1][Data.Effect.MOUNTAIN], effects[-1][Data.Effect.SUN])
-	bar4.update_sub_dist(effects[-2][Data.Effect.CREST], effects[-2][Data.Effect.MOUNTAIN], effects[-2][Data.Effect.SUN])
+	var most: int = max(counts[-2], counts[-1], counts[0], counts[1])
+	var denom := float(most)
+	var effect: Dictionary[Data.Effect, int] = {}
+	for idx in range(effects.size()):
+		bars[idx].anchor_right = counts[idx] / denom
+		effect.assign(effects[idx])
+		bars[idx].update_sub_dist(effect)

@@ -52,10 +52,10 @@ func reshuffle() -> void:
 func shuffle_last(a: Data.Card, _b: Data.Card) -> bool:
 	return a.need_shuffle()
 
-func draw() -> void:
+func draw(can_shuffle: bool) -> void:
 	current_card = deck.pop_back()
 	card.update(current_card)
-	if current_card.need_shuffle():
+	if can_shuffle and current_card.need_shuffle():
 		shuffle()
 	card.visible = true
 	update_dist()
@@ -169,10 +169,13 @@ func _on_reshuffle_pressed() -> void:
 	reshuffle()
 
 func _on_draw_pressed() -> void:
-	draw()
+	draw(true)
 
 func _on_scout_pressed() -> void:
 	scout(true)
 
 func _on_scout_overlay_pressed() -> void:
 	scout(false)
+
+func _on_discard_pressed() -> void:
+	draw(false)

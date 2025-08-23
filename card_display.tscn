@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://th3dc30cpvao"]
+
+[ext_resource type="Script" uid="uid://dshkj1tkxy7po" path="res://card_display.gd" id="1_li3i1"]
+[ext_resource type="PackedScene" uid="uid://bgdgth5d10ob2" path="res://quadrant.tscn" id="1_q5obu"]
+[ext_resource type="Texture2D" uid="uid://c4xelg78s82tf" path="res://mountain.svg" id="2_e484p"]
+[ext_resource type="Texture2D" uid="uid://cxp6c01b74lca" path="res://shuffle.svg" id="3_fpac0"]
+
+[node name="CardDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_li3i1")
+
+[node name="Quadrant" parent="." instance=ExtResource("1_q5obu")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.4
+
+[node name="Quadrant2" parent="." instance=ExtResource("1_q5obu")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_bottom = 0.4
+
+[node name="Quadrant3" parent="." instance=ExtResource("1_q5obu")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.4
+anchor_right = 0.5
+anchor_bottom = 0.8
+
+[node name="Quadrant4" parent="." instance=ExtResource("1_q5obu")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.4
+anchor_bottom = 0.8
+
+[node name="Effect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.215902, 0.215902, 0.215902, 1)
+
+[node name="Icon" type="TextureRect" parent="Effect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.98
+offset_top = -97.04
+offset_right = 3.01996
+offset_bottom = 2.96002
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("2_e484p")
+
+[node name="Shuffle" type="TextureRect" parent="Effect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.5
+anchor_right = 0.8
+anchor_bottom = 0.5
+offset_left = -65.6201
+offset_top = -65.99
+offset_right = 34.3799
+offset_bottom = 34.01
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(1.37, 1.37)
+texture = ExtResource("3_fpac0")

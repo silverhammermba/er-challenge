@@ -18,7 +18,7 @@ func flip_text() -> void:
 	label2.scale.x = -1
 	label3.scale.x = -1
 	label4.scale.x = -1
-	var width = label1.anchor_right - label1.anchor_left
+	var width := label1.anchor_right - label1.anchor_left
 	label1.anchor_left += width
 	label1.anchor_right += width
 	label2.anchor_left += width

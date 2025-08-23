@@ -13,6 +13,8 @@ const Data = preload("data.gd")
 @onready var bar_cst: ColorRect = $EffectBars/Bar
 @onready var bar_mnt: ColorRect = $EffectBars/Bar2
 @onready var bar_sun: ColorRect = $EffectBars/Bar3
+@onready var scout_overlay: Button = $ScoutOverlay
+@onready var scout_card: CardDisplay = $ScoutOverlay/CardDisplay
 
 var deck: Array[Data.Card] = []
 var current_card: Data.Card = null
@@ -34,6 +36,7 @@ func _ready() -> void:
 	bar_sun.color = Data.effect_color(Data.Effect.SUN)
 	if not load_game():
 		reshuffle()
+	scout(false)
 
 func shuffle() -> void:
 	deck = Data.cards.duplicate()
@@ -59,6 +62,11 @@ func draw() -> void:
 	card.visible = true
 	update_dist()
 	save_game()
+
+func scout(active: bool) -> void:
+	if active:
+		scout_card.update(deck[-1])
+	scout_overlay.visible = active
 	
 func update_dist() -> void:
 	bar_awa.update_dist(deck)
@@ -132,3 +140,10 @@ func _on_reshuffle_pressed() -> void:
 
 func _on_draw_pressed() -> void:
 	draw()
+
+func _on_scout_pressed() -> void:
+	scout(true)
+
+func _on_scout_overlay_pressed() -> void:
+	scout(false)
+	

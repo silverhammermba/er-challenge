@@ -15,6 +15,7 @@ const Data = preload("data.gd")
 
 var deck: Array[Data.Card] = []
 var current_card: Data.Card = null
+var scout_index: int = -1
 const save_version := 0
 const save_path := "user://savegame.save"
 const version_save_key := "version"
@@ -63,7 +64,11 @@ func draw(can_shuffle: bool) -> void:
 
 func scout(active: bool) -> void:
 	if active:
-		scout_card.update(deck[-1])
+		if -scout_index <= deck.size():
+			scout_card.update(deck[scout_index])
+			scout_index -= 1
+	else:
+		scout_index = -1
 	scout_overlay.visible = active
 	
 func update_dist() -> void:

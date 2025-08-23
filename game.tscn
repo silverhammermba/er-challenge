@@ -219,17 +219,6 @@ grow_horizontal = 0
 icon = ExtResource("3_fc0e3")
 expand_icon = true
 
-[node name="Scout" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.74
-anchor_right = 0.17
-anchor_bottom = 0.83
-grow_vertical = 0
-theme_override_font_sizes/font_size = 60
-text = "Scout"
-
 [node name="Discard" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -257,8 +246,20 @@ anchor_top = 0.1
 anchor_right = 0.7
 anchor_bottom = 0.9
 
+[node name="Scout" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.74
+anchor_right = 0.17
+anchor_bottom = 0.83
+offset_right = -3.05176e-05
+grow_vertical = 0
+theme_override_font_sizes/font_size = 60
+text = "Scout"
+
 [connection signal="pressed" from="CardArea/CardContainer/Draw" to="." method="_on_draw_pressed"]
 [connection signal="pressed" from="Reshuffle" to="." method="_on_reshuffle_pressed"]
-[connection signal="pressed" from="Scout" to="." method="_on_scout_pressed"]
 [connection signal="pressed" from="Discard" to="." method="_on_discard_pressed"]
 [connection signal="pressed" from="ScoutOverlay" to="." method="_on_scout_overlay_pressed"]
+[connection signal="pressed" from="Scout" to="." method="_on_scout_pressed"]

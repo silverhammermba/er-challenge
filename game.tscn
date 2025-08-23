@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://8rujtyskfdu2" path="res://bars.tscn" id="3_feb5d"]
 [ext_resource type="Texture2D" uid="uid://mib4pbmf5h2k" path="res://sun.svg" id="3_ryrav"]
 [ext_resource type="Texture2D" uid="uid://dql4xl1db88r8" path="res://crest.svg" id="5_7jktm"]
-[ext_resource type="PackedScene" uid="uid://th3dc30cpvao" path="res://card_display.tscn" id="6_eow3j"]
+[ext_resource type="PackedScene" path="res://card_display.tscn" id="6_eow3j"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eow3j"]
 

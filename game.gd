@@ -41,7 +41,7 @@ func _ready() -> void:
 func shuffle() -> void:
 	deck = Data.cards.duplicate()
 	deck.shuffle()
-	
+
 func reshuffle() -> void:
 	shuffle()
 	# uncomment to always put -2s at the end
@@ -50,7 +50,7 @@ func reshuffle() -> void:
 	current_card = null
 	update_dist()
 	DirAccess.remove_absolute(save_path)
-	
+
 func shuffle_last(a: Data.Card, _b: Data.Card) -> bool:
 	return a.need_shuffle()
 
@@ -67,7 +67,7 @@ func scout(active: bool) -> void:
 	if active:
 		scout_card.update(deck[-1])
 	scout_overlay.visible = active
-	
+
 func update_dist() -> void:
 	bar_awa.update_dist(deck)
 	bar_spi.update_dist(deck)
@@ -146,4 +146,3 @@ func _on_scout_pressed() -> void:
 
 func _on_scout_overlay_pressed() -> void:
 	scout(false)
-	

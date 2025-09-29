@@ -14,7 +14,7 @@ config/name="Earthborne Rangers Challenge Deck"
 config/description="Unofficial challenge deck companion app for Earthborne Rangers."
 config/version="0"
 run/main_scene="uid://bfh16n72apleo"
-config/features=PackedStringArray("4.4", "Mobile")
+config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
 [debug]

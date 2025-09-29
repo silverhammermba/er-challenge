@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dql4xl1db88r8" path="res://crest.svg" id="5_7jktm"]
 [ext_resource type="PackedScene" uid="uid://th3dc30cpvao" path="res://card_display.tscn" id="6_eow3j"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eow3j"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_feb5d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eow3j"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -30,50 +30,71 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.371747, 0.462555, 0.392134, 1)
 
-[node name="BarArea2" type="Control" parent="."]
-layout_mode = 1
-anchor_left = 0.2
-anchor_top = 0.05
-anchor_right = 0.375
-anchor_bottom = 0.768
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Bars" type="Control" parent="BarArea2"]
+[node name="Columns" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(-1, 1)
+theme_override_constants/separation = 0
 
-[node name="Awareness" parent="BarArea2/Bars" instance=ExtResource("3_feb5d")]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.1
-anchor_bottom = 0.4
+[node name="LeftControls" type="VBoxContainer" parent="Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Fitness" parent="BarArea2/Bars" instance=ExtResource("3_feb5d")]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.6
-anchor_bottom = 0.9
+[node name="MarginContainer" type="MarginContainer" parent="Columns/LeftControls"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_bottom = 50
 
-[node name="CardArea" type="Control" parent="."]
-layout_mode = 1
-anchor_left = 0.2
-anchor_right = 0.8
-anchor_bottom = 1.0
+[node name="Bars" type="VBoxContainer" parent="Columns/LeftControls/MarginContainer"]
+layout_mode = 2
 
-[node name="CardContainer" type="Control" parent="CardArea"]
-layout_mode = 1
-anchor_left = 0.05
-anchor_top = 0.05
-anchor_right = 0.95
-anchor_bottom = 0.95
+[node name="Awareness" parent="Columns/LeftControls/MarginContainer/Bars" instance=ExtResource("3_feb5d")]
+layout_mode = 2
+size_flags_vertical = 2
 
-[node name="Instructions" type="Label" parent="CardArea/CardContainer"]
+[node name="Fitness" parent="Columns/LeftControls/MarginContainer/Bars" instance=ExtResource("3_feb5d")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="MarginContainer2" type="MarginContainer" parent="Columns/LeftControls"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Columns/LeftControls/MarginContainer2"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Columns/LeftControls/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Discard" type="Button" parent="Columns/LeftControls/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 60
+text = "Discard"
+
+[node name="CardArea" type="MarginContainer" parent="Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.4
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="CardContainer" type="Control" parent="Columns/CardArea"]
+layout_mode = 2
+
+[node name="Instructions" type="Label" parent="Columns/CardArea/CardContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -89,124 +110,110 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 160
 text = "tap"
 
-[node name="Card" parent="CardArea/CardContainer" instance=ExtResource("6_eow3j")]
+[node name="Card" parent="Columns/CardArea/CardContainer" instance=ExtResource("6_eow3j")]
 layout_mode = 1
 
-[node name="Draw" type="Button" parent="CardArea/CardContainer"]
+[node name="Draw" type="Button" parent="Columns/CardArea/CardContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/hover = SubResource("StyleBoxEmpty_eow3j")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_feb5d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_eow3j")
 
-[node name="BarArea" type="Control" parent="."]
-layout_mode = 1
-anchor_left = 0.8
-anchor_top = 0.05
-anchor_right = 0.975
-anchor_bottom = 0.768
-grow_horizontal = 2
-grow_vertical = 2
+[node name="RightControls" type="VBoxContainer" parent="Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Bars" type="Control" parent="BarArea"]
+[node name="MarginContainer" type="MarginContainer" parent="Columns/RightControls"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Bars" type="VBoxContainer" parent="Columns/RightControls/MarginContainer"]
+layout_mode = 2
+
+[node name="Spirit" parent="Columns/RightControls/MarginContainer/Bars" instance=ExtResource("3_feb5d")]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Focus" parent="Columns/RightControls/MarginContainer/Bars" instance=ExtResource("3_feb5d")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="MarginContainer2" type="MarginContainer" parent="Columns/RightControls"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="EffectBars" type="GridContainer" parent="Columns/RightControls/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+
+[node name="Area" type="Control" parent="Columns/RightControls/MarginContainer2/EffectBars"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Bar" type="ColorRect" parent="Columns/RightControls/MarginContainer2/EffectBars/Area"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Spirit" parent="BarArea/Bars" instance=ExtResource("3_feb5d")]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.1
-anchor_bottom = 0.4
-
-[node name="Focus" parent="BarArea/Bars" instance=ExtResource("3_feb5d")]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.6
-anchor_bottom = 0.9
-
-[node name="EffectBars" type="Control" parent="."]
-layout_mode = 1
-anchor_left = 0.8
-anchor_top = 0.79
-anchor_right = 0.93
-anchor_bottom = 0.95
-offset_right = -0.00012207
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="Bar" type="ColorRect" parent="EffectBars"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.33
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Bar2" type="ColorRect" parent="EffectBars"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.33
-anchor_right = 0.5
-anchor_bottom = 0.66
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Bar3" type="ColorRect" parent="EffectBars"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.66
-anchor_right = 0.75
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Crest" type="TextureRect" parent="EffectBars"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.33
-offset_left = 277.2
-offset_top = -3.52002
-offset_right = 143.6
-offset_bottom = -3.08641
+[node name="Crest" type="TextureRect" parent="Columns/RightControls/MarginContainer2/EffectBars"]
+layout_mode = 2
 texture = ExtResource("5_7jktm")
-expand_mode = 1
-stretch_mode = 3
+expand_mode = 2
+stretch_mode = 5
 
-[node name="Mountain" type="TextureRect" parent="EffectBars"]
+[node name="Area2" type="Control" parent="Columns/RightControls/MarginContainer2/EffectBars"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Bar2" type="ColorRect" parent="Columns/RightControls/MarginContainer2/EffectBars/Area2"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.33
-anchor_right = 1.0
-anchor_bottom = 0.66
-offset_left = 275.2
-offset_top = 5.91359
-offset_right = 151.6
-offset_bottom = -5.6528
-texture = ExtResource("3_eow3j")
-expand_mode = 1
-stretch_mode = 3
-
-[node name="Sun" type="TextureRect" parent="EffectBars"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.66
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 284.4
-offset_top = 10.8272
-offset_right = 141.8
-offset_bottom = 2.88
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Mountain" type="TextureRect" parent="Columns/RightControls/MarginContainer2/EffectBars"]
+layout_mode = 2
+texture = ExtResource("3_eow3j")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Area3" type="Control" parent="Columns/RightControls/MarginContainer2/EffectBars"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Bar3" type="ColorRect" parent="Columns/RightControls/MarginContainer2/EffectBars/Area3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sun" type="TextureRect" parent="Columns/RightControls/MarginContainer2/EffectBars"]
+layout_mode = 2
 texture = ExtResource("3_ryrav")
-expand_mode = 1
-stretch_mode = 3
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Reshuffle" type="Button" parent="."]
 layout_mode = 1
@@ -219,17 +226,6 @@ grow_horizontal = 0
 icon = ExtResource("3_fc0e3")
 expand_icon = true
 
-[node name="Discard" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.86
-anchor_right = 0.17
-anchor_bottom = 0.95
-grow_vertical = 0
-theme_override_font_sizes/font_size = 60
-text = "Discard"
-
 [node name="ScoutOverlay" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -237,29 +233,93 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_behavior_recursive = 2
 
-[node name="CardDisplay" parent="ScoutOverlay" instance=ExtResource("6_eow3j")]
+[node name="Columns3" type="HBoxContainer" parent="ScoutOverlay"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.1
-anchor_right = 0.7
-anchor_bottom = 0.9
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_behavior_recursive = 1
+theme_override_constants/separation = 0
 
-[node name="Scout" type="Button" parent="."]
+[node name="LeftControls" type="Control" parent="ScoutOverlay/Columns3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Margin" type="MarginContainer" parent="ScoutOverlay/Columns3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.4
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="CardDisplay" parent="ScoutOverlay/Columns3/Margin" instance=ExtResource("6_eow3j")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="ScoutOverlay/Columns3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScoutLayout" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.74
-anchor_right = 0.17
-anchor_bottom = 0.83
-offset_right = -3.05176e-05
-grow_vertical = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="LeftControls" type="VBoxContainer" parent="ScoutLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_behavior_recursive = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="ScoutLayout/LeftControls"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+mouse_behavior_recursive = 1
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_bottom = 50
+
+[node name="MarginContainer2" type="MarginContainer" parent="ScoutLayout/LeftControls"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_behavior_recursive = 1
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScoutLayout/LeftControls/MarginContainer2"]
+layout_mode = 2
+mouse_behavior_recursive = 1
+
+[node name="Scout" type="Button" parent="ScoutLayout/LeftControls/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_behavior_recursive = 2
 theme_override_font_sizes/font_size = 60
 text = "Scout"
 
-[connection signal="pressed" from="CardArea/CardContainer/Draw" to="." method="_on_draw_pressed"]
+[node name="Control" type="Control" parent="ScoutLayout/LeftControls/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_behavior_recursive = 1
+
+[node name="Control" type="Control" parent="ScoutLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.4
+mouse_behavior_recursive = 1
+
+[connection signal="pressed" from="Columns/LeftControls/MarginContainer2/VBoxContainer/Discard" to="." method="_on_discard_pressed"]
+[connection signal="pressed" from="Columns/CardArea/CardContainer/Draw" to="." method="_on_draw_pressed"]
 [connection signal="pressed" from="Reshuffle" to="." method="_on_reshuffle_pressed"]
-[connection signal="pressed" from="Discard" to="." method="_on_discard_pressed"]
 [connection signal="pressed" from="ScoutOverlay" to="." method="_on_scout_overlay_pressed"]
-[connection signal="pressed" from="Scout" to="." method="_on_scout_pressed"]
+[connection signal="pressed" from="ScoutLayout/LeftControls/MarginContainer2/VBoxContainer/Scout" to="." method="_on_scout_pressed"]

@@ -17,20 +17,15 @@ var _color: Color = Color.BLACK:
 		return _color
 	set(value):
 		_color = value
-		color_rect.color = value
-		aspect_label.add_theme_color_override("font_outline_color", value)
-
-var _aspect: Data.Aspect = Data.Aspect.FITNESS
-var _number: int = 0
 
 func set_aspect(value: Data.Aspect) -> void:
-	_aspect = value
-	_color = Data.aspect_color(_aspect)
-	aspect_label.text = Data.aspect_name(_aspect)
+	aspect_label.text = Data.aspect_name(value)
+	var color := Data.aspect_color(value)
+	color_rect.color = color
+	aspect_label.add_theme_color_override("font_outline_color", color)
 
 func set_number(value: int) -> void:
-	_number = value
-	if _number > 0:
-		number_label.text = "%+d" % _number
+	if value > 0:
+		number_label.text = "%+d" % value
 	else:
-		number_label.text = "%d" % _number
+		number_label.text = "%d" % value

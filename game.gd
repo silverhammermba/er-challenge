@@ -8,16 +8,16 @@ extends Control
 
 const Data = preload("data.gd")
 
-@onready var card: CardDisplay = $CardArea/CardContainer/Card
-@onready var bar_awa: Bars = $BarArea2/Bars/Awareness
-@onready var bar_spi: Bars = $BarArea/Bars/Spirit
-@onready var bar_fit: Bars = $BarArea2/Bars/Fitness
-@onready var bar_foc: Bars = $BarArea/Bars/Focus
-@onready var bar_cst: ColorRect = $EffectBars/Bar
-@onready var bar_mnt: ColorRect = $EffectBars/Bar2
-@onready var bar_sun: ColorRect = $EffectBars/Bar3
+@onready var card: CardDisplay = $Columns/CardArea/CardContainer/Card
+@onready var bar_awa: Bars = $Columns/LeftControls/MarginContainer/Bars/Awareness
+@onready var bar_spi: Bars = $Columns/RightControls/MarginContainer/Bars/Spirit
+@onready var bar_fit: Bars = $Columns/LeftControls/MarginContainer/Bars/Fitness
+@onready var bar_foc: Bars = $Columns/RightControls/MarginContainer/Bars/Focus
+@onready var bar_cst: ColorRect = $Columns/RightControls/MarginContainer2/EffectBars/Area/Bar
+@onready var bar_mnt: ColorRect = $Columns/RightControls/MarginContainer2/EffectBars/Area2/Bar2
+@onready var bar_sun: ColorRect = $Columns/RightControls/MarginContainer2/EffectBars/Area3/Bar3
 @onready var scout_overlay: Button = $ScoutOverlay
-@onready var scout_card: CardDisplay = $ScoutOverlay/CardDisplay
+@onready var scout_card: CardDisplay = $ScoutOverlay/Columns3/Margin/CardDisplay
 
 var deck: Array[Data.Card] = []
 var current_card: Data.Card = null
@@ -29,11 +29,11 @@ const deck_save_key := "deck"
 const current_save_key := "current"
 
 func _ready() -> void:
+	bar_awa.flip()
 	bar_awa.set_aspect(Data.Aspect.AWARENESS)
-	bar_awa.flip_text()
 	bar_spi.set_aspect(Data.Aspect.SPIRIT)
+	bar_fit.flip()
 	bar_fit.set_aspect(Data.Aspect.FITNESS)
-	bar_fit.flip_text()
 	bar_foc.set_aspect(Data.Aspect.FOCUS)
 	bar_cst.color = Data.effect_color(Data.Effect.CREST)
 	bar_mnt.color = Data.effect_color(Data.Effect.MOUNTAIN)

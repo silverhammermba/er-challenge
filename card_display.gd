@@ -4,14 +4,14 @@
 # ER-Challenge is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 # You should have received a copy of the GNU General Public License along with ER-Challenge. If not, see <https://www.gnu.org/licenses/>.
 
-class_name CardDisplay extends Control
+class_name CardDisplay extends VBoxContainer
 
 const Data = preload("data.gd")
 
-@onready var quad1: Quadrant = $Quadrant
-@onready var quad2: Quadrant = $Quadrant2
-@onready var quad3: Quadrant = $Quadrant3
-@onready var quad4: Quadrant = $Quadrant4
+@onready var quad1: Quadrant = $GridContainer/Quadrant
+@onready var quad2: Quadrant = $GridContainer/Quadrant2
+@onready var quad3: Quadrant = $GridContainer/Quadrant3
+@onready var quad4: Quadrant = $GridContainer/Quadrant4
 @onready var effect: ColorRect = $Effect
 @onready var effect_icon: TextureRect = $Effect/Icon
 @onready var effect_shuffle: TextureRect = $Effect/Shuffle

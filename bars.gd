@@ -4,19 +4,25 @@
 # ER-Challenge is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 # You should have received a copy of the GNU General Public License along with ER-Challenge. If not, see <https://www.gnu.org/licenses/>.
 
-class_name Bars extends Control
+class_name Bars extends GridContainer
 
 const Data = preload("data.gd")
 
-@onready var bar1: Bar = $BarContainer/Bar
-@onready var bar2: Bar = $BarContainer/Bar2
-@onready var bar3: Bar = $BarContainer/Bar3
-@onready var bar4: Bar = $BarContainer/Bar4
+# we assume this starts visible
+@onready var area1: Control = $Area
+# we assume this starts invisible
+@onready var area5: Control = $Area5
+@onready var bar1: Bar = $Area/Bar
+@onready var bar2: Bar = $Area2/Bar
+@onready var bar3: Bar = $Area3/Bar
+@onready var bar4: Bar = $Area4/Bar
+@onready var bar5: Bar = $Area5/Bar
 @onready var label1: Label = $Label
 @onready var label2: Label = $Label2
 @onready var label3: Label = $Label3
 @onready var label4: Label = $Label4
 
+var _flipped := false
 var _aspect: Data.Aspect = Data.Aspect.FITNESS
 var bars: Array[Bar]
 
@@ -24,20 +30,13 @@ func _ready() -> void:
 	# matches up bar2: 0, bar1: 1, bar4: -2, bar3: -1
 	bars = [bar2, bar1, bar4, bar3]
 
-func flip_text() -> void:
-	label1.scale.x = -1
-	label2.scale.x = -1
-	label3.scale.x = -1
-	label4.scale.x = -1
-	var width := label1.anchor_right - label1.anchor_left
-	label1.anchor_left += width
-	label1.anchor_right += width
-	label2.anchor_left += width
-	label2.anchor_right += width
-	label3.anchor_left += width
-	label3.anchor_right += width
-	label4.anchor_left += width
-	label4.anchor_right += width
+func flip() -> void:
+	_flipped = true
+	area1.visible = false
+	area5.visible = true
+	bars = [bar3, bar2, bar5, bar4]
+	for bar in bars:
+		bar.flip()
 
 func set_aspect(value: Data.Aspect) -> void:
 	_aspect = value
@@ -60,6 +59,9 @@ func update_dist(deck: Array[Data.Card]) -> void:
 	var denom := float(most)
 	var effect: Dictionary[Data.Effect, int] = {}
 	for idx in range(effects.size()):
-		bars[idx].anchor_right = counts[idx] / denom
+		if _flipped:
+			bars[idx].anchor_left = 1 - counts[idx] / denom
+		else:
+			bars[idx].anchor_right = counts[idx] / denom
 		effect.assign(effects[idx])
 		bars[idx].update_sub_dist(effect)

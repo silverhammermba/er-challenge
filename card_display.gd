@@ -13,8 +13,8 @@ const Data = preload("data.gd")
 @onready var quad3: Quadrant = $GridContainer/Quadrant3
 @onready var quad4: Quadrant = $GridContainer/Quadrant4
 @onready var effect: ColorRect = $Effect
-@onready var effect_icon: TextureRect = $Effect/Icon
-@onready var effect_shuffle: TextureRect = $Effect/Shuffle
+@onready var effect_icon: TextureRect = $Effect/HBoxContainer/Icon
+@onready var effect_shuffle: TextureRect = $Effect/HBoxContainer/MarginContainer/Shuffle
 
 var crest_icon: Texture2D = preload("res://crest.svg")
 var mountain_icon: Texture2D = preload("res://mountain.svg")

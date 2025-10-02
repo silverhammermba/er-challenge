@@ -47,34 +47,34 @@ layout_mode = 2
 size_flags_vertical = 3
 color = Color(0.215902, 0.215902, 0.215902, 1)
 
-[node name="Icon" type="TextureRect" parent="Effect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Effect"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -96.98
-offset_top = -97.04
-offset_right = 3.01996
-offset_bottom = 2.96002
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2, 2)
-texture = ExtResource("2_e484p")
 
-[node name="Shuffle" type="TextureRect" parent="Effect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.8
-anchor_top = 0.5
-anchor_right = 0.8
-anchor_bottom = 0.5
-offset_left = -65.6201
-offset_top = -65.99
-offset_right = 34.3799
-offset_bottom = 34.01
-grow_horizontal = 0
-grow_vertical = 2
-scale = Vector2(1.37, 1.37)
+[node name="Space" type="Control" parent="Effect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Icon" type="TextureRect" parent="Effect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_e484p")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Effect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="Shuffle" type="TextureRect" parent="Effect/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 texture = ExtResource("3_fpac0")
+expand_mode = 2
+stretch_mode = 5
